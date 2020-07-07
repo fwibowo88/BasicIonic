@@ -5,5 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <p>Student List Page</p>
+  <ion-list >
+    <ion-item *ngFor="let student of students">
+      <ion-avatar slot="start">
+        <ion-img [src]="student.photo"></ion-img>
+      </ion-avatar>
+      <ion-label>{{student.name}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
