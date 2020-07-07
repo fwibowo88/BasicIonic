@@ -1,9 +1,27 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Student Profile : </ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Student Profile : {{loadedStudent.name+'-'+loadedStudent.id}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col><ion-img [src]="loadedStudent.photo" style="width:65;"></ion-img></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <h1>{{loadedStudent.name}}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let hobby of loadedStudent.hobbies">
+            {{hobby}}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
