@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 import { StudentsService } from '../students.service';
 import { Student } from '../student.model';
 
@@ -14,7 +16,8 @@ export class StudentDetailPage implements OnInit {
   constructor(
     private activatedRoute:ActivatedRoute, 
     private studentService:StudentsService,
-    private router:Router) { }
+    private router:Router,
+    private alertCtrl:AlertController) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap=>{
@@ -26,9 +29,26 @@ export class StudentDetailPage implements OnInit {
       this.loadedStudent = this.studentService.getStudent(studentID)
     });
   }
-  onDeleteStudent(){
-    this.studentService.deleteStudent(this.loadedStudent.id);
-    this.router.navigate(['/students']);
-  }
 
+  onDeleteStudent(){
+    this.alertCtrl.create({
+      header:'Warning !!',
+      message:'Do u really want to delete the Student?',
+      buttons: [
+        {
+          text:'Cancel',
+          role:'cancel'
+        },
+        {
+          text:'Delete',
+          handler: ()=>{
+            this.studentService.deleteStudent(this.loadedStudent.id);
+            this.router.navigate(['/students']);
+          }
+        }
+      ]
+    }).then(alertEl => {
+      alertEl.present();
+    });
+  }
 }
