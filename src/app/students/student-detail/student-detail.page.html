@@ -4,6 +4,9 @@
       <ion-back-button defaultHref="/students"></ion-back-button>
     </ion-buttons>
     <ion-title>Student Profile : {{loadedStudent.name+'-'+loadedStudent.id}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onDeleteStudent()"><ion-icon name="trash" slot="icon-only"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

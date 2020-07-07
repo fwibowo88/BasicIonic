@@ -25,10 +25,16 @@ export class StudentsService {
     return [...this.students];
   }
 
-  getStudent(studentID){
+  getStudent(studentID:string){
     return {
       ...this.students.find(student => {
       return student.id === studentID;
     })};
+  }
+
+  deleteStudent(studentID:string){
+    this.students = this.students.filter(student=>{
+      return student.id !== studentID;
+    });
   }
 }

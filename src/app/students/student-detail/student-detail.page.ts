@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentsService } from '../students.service';
 import { Student } from '../student.model';
 
@@ -13,7 +13,8 @@ export class StudentDetailPage implements OnInit {
 
   constructor(
     private activatedRoute:ActivatedRoute, 
-    private studentService:StudentsService) { }
+    private studentService:StudentsService,
+    private router:Router) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap=>{
@@ -24,6 +25,10 @@ export class StudentDetailPage implements OnInit {
       const studentID = paramMap.get('studentID');
       this.loadedStudent = this.studentService.getStudent(studentID)
     });
+  }
+  onDeleteStudent(){
+    this.studentService.deleteStudent(this.loadedStudent.id);
+    this.router.navigate(['/students']);
   }
 
 }
