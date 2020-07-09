@@ -12,7 +12,25 @@ export class StudentsPage implements OnInit {
   constructor(private studentService: StudentsService) { }
 
   ngOnInit() {
+    console.log('ng On init');
+  }
+
+  ionViewWillEnter()
+  {
     this.students = this.studentService.getAllStudents();
+    console.log('ION Will Enter');
+  }
+  ionViewDidEnter()
+  {
+    console.log('ION Did Enter');
+  }
+  ionViewWillLeave()
+  {
+    console.log('ION Will Leave');
+  }
+  ionViewDidLeave()
+  {
+    console.log('ION Did Leave');
   }
 
 }

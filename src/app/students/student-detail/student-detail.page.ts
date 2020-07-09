@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -10,7 +10,7 @@ import { Student } from '../student.model';
   templateUrl: './student-detail.page.html',
   styleUrls: ['./student-detail.page.scss'],
 })
-export class StudentDetailPage implements OnInit {
+export class StudentDetailPage implements OnInit,OnDestroy {
   loadedStudent:Student;
 
   constructor(
@@ -29,6 +29,7 @@ export class StudentDetailPage implements OnInit {
       this.loadedStudent = this.studentService.getStudent(studentID)
     });
   }
+
 
   onDeleteStudent(){
     this.alertCtrl.create({
@@ -50,5 +51,27 @@ export class StudentDetailPage implements OnInit {
     }).then(alertEl => {
       alertEl.present();
     });
+  }
+
+
+  ionViewWillEnter()
+  {
+    console.log('ION Will Enter');
+  }
+  ionViewDidEnter()
+  {
+    console.log('ION Did Enter');
+  }
+  ionViewWillLeave()
+  {
+    console.log('ION Will Leave');
+  }
+  ionViewDidLeave()
+  {
+    console.log('ION Did Leave');
+  }
+  ngOnDestroy()
+  {
+    console.log('ng On Destroy');
   }
 }
